@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg, #ff758c, #ff7eb3, #ffcc00, #00ffcc, #ff4d4d);
+            font-family: 'Pacifico', cursive;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            animation: bgAnimation 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 0 15px #ff0066, 0 0 30px #ff1493, 0 0 45px #ff69b4;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1s ease-in-out;
+            text-align: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: white;
+            background: linear-gradient(45deg, #ff0066, #ff69b4, #ffcc00);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 50px;
+            box-shadow: 0 4px 15px rgba(255, 0, 100, 0.7);
+            transition: all 0.3s ease-in-out;
+            font-family: 'Pacifico', cursive;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #ff1493; }
+            to { box-shadow: 0 0 20px #ffcc00, 0 0 30px #ff0066; }
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ff0066, #ff1493);
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .firework {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ffcc00, #ff1493, transparent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: explode 0.8s ease-out forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-150px) scale(1.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-300px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1 id="loveMessage">I ❤️ You Forever, My Love!</h1>
+    <button onclick="showLove()">Tap Me ❤️</button>
+
+    <script>
+        function showLove() {
+            let message = document.getElementById('loveMessage');
+            message.style.opacity = '1';
+            message.style.transform = 'scale(1)';
+
+            for (let i = 0; i < 40; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                document.body.appendChild(heart);
+                
+                let xPos = Math.random() * window.innerWidth;
+                let duration = Math.random() * 4 + 2;
+
+                heart.style.left = xPos + "px";
+                heart.style.bottom = 0;
+                heart.style.animation = `float ${duration}s infinite`;
+
+                setTimeout(() => {
+                    heart.remove();
+                }, duration * 1000);
+            }
+
+            for (let i = 0; i < 20; i++) {
+                let firework = document.createElement("div");
+                firework.classList.add("firework");
+                document.body.appendChild(firework);
+                
+                let xPos = Math.random() * window.innerWidth;
+                let yPos = Math.random() * window.innerHeight;
+
+                firework.style.left = xPos + "px";
+                firework.style.top = yPos + "px";
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 800);
+            }
+        }
+    </script>
+
+</body>
+</html>
